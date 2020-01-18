@@ -6,19 +6,29 @@
           text-align: center;
           color: white;
           font-family: Arial;
+          animation-name: nothing;
+          animation-duration: 4s;
+          animation-iteration-count: infinite;
         }
         button {
-  background-color:#C0C0C0;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-        </style>
-        </head> 
+            background-color:#C0C0C0;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        @keyframes calling{
+            0% {background-color: red;}
+            50% {background-color: orange;}
+            100% {background-color: red;}
+        }
+</style>
+</head> 
+
 <body>
 <h1>PANIC! button.</h1>
 User ID:<br> <br>
@@ -46,9 +56,11 @@ User ID:<br> <br>
         var stopCall = document.getElementById("hidden");
         if(stopCall.style.display == "none"){
             document.body.style.backgroundColor = "#cc3300";
+            document.body.style.animationName = "calling";
             stopCall.style.display = "block";
             callForHelp.style.display = "none";
         } else {
+            document.body.style.animationName = "nothing";
             document.body.style.backgroundColor = "#404040";
             stopCall.style.display = "none";
             callForHelp.style.display = "block";
