@@ -22,6 +22,7 @@
             box-shadow: 0 9px #747474;
             border-radius: 15px;
             animation-name: fadeIn;
+            animation-duration: 1s;
         }
         
         h1{
@@ -44,10 +45,13 @@
 
         div4{
             opacity: 1;
-            transform: scaleY(1);
-            transForm: scaleX(1);
-            animation-name: dropDown;
-            animation-duration: 1s;
+            animation-name: textFade;
+            animation-duration: 3s;
+        }
+
+        @keyframes textFade{
+            from{opacity:0;}
+            to{opacity:1;}
         }
 
         @keyframes dropDown{
@@ -99,7 +103,7 @@
     <button> Call for Help </button>
 </div>
 <p></p>
-<div3><input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> Notify Police </input></div3>
+<div3><input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> <div4>Notify Police</div4> </input></div3>
 </div4> <br> <br>
 
 <button onclick = "window.location.href = 'addNumbers.html'"> signup</button>
