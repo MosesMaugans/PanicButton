@@ -27,11 +27,13 @@ User ID:<br> <br>
     <br>
     Password<br>
     <input type="text" id="password"> <br> <br>
-    <button onclick = "safe()"> I'm safe</button>
+    <button onclick = "activate()"> I'm safe</button>
 </div>
 <br>  
 <br> <br>
-<button onclick = "activate()" id="help"> Call for Help </button>
+<div id = "help" onclick="activate()">
+    <button> Call for Help </button>
+</div>
 <p></p>
 <input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> Notify Police </input>
 </div> <br> <br> <br> <br> <br> <br> <br> <br>
@@ -41,7 +43,7 @@ User ID:<br> <br>
 <script>
     function activate(){
         var callForHelp = document.getElementById("help");
-        var stopCall = document.getElementById("safe");
+        var stopCall = document.getElementById("hidden");
         if(stopCall.style.display == "none"){
             document.body.style.backgroundColor = "#cc3300";
             stopCall.style.display = "block";
