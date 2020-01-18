@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Emergency Contacts</h2>
+
+<p>
+	Contact Name:<br>
+	<input type="text" id="Name" value=""><br>
+</p>
+
+<p> 
+	Contact Phone:<br>
+ 	<input type="text" id="Phone" value=""><br>
+</p>
+
+<p> Email Address:<br>
+    <input type="text" id="Email" value=""><br>
+</p>
+
+<button onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("Name").value + "<br>" +  document.getElementById("Phone").value + "<br>" +  document.getElementById("Email").value;
+
+ document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+</body>
+</html>
