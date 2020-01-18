@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
 <body>
+
 <div style="text-align: center;">
 <h1>PANIC! button.</h1>
 
 <button>PANIC!</button>
-  
-<input type="checkbox" name="notify" value="Notify"> Notify Police </input>
-
+<p></p>
+<input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> Notify Police </input>
 </div>
+
 </body>
 </html>
+
+<script>
+    function toggleNotify(){
+        var val = document.getElementById("notify").value;
+        if(val == "true"){
+            document.getElementById("notify").value = "false";
+        } else{
+            document.getElementById("notify").value = "true";
+        }
+    }    
+</script>
