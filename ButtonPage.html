@@ -8,7 +8,7 @@
           font-family: Arial;
         }
         button {
-  background-color:#C0C0C0; /* Green */
+  background-color:#C0C0C0;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -22,16 +22,30 @@
 <body>
 <h1>PANIC! button.</h1>
 User ID:<br> <br>
-<input type="text" id="userID" value=""><br>  
+<input type="text" id="userID" value="">
+<div id="hidden" style="display: none;">
+    <br>
+    Password<br>
+    <input type="text" id="password"> <br> <br>
+    <button> I'm safe</button>
+</div>
+<br>  
 <br> <br>
-<button onclick = "activate()"> Call for Help </button>
+<button onclick = "activate(self)"> Call for Help </button>
 <p></p>
 <input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> Notify Police </input>
 </div>
 
 <script>
-    function activate(){
-        alert("Hello");
+    function activate(self){
+        var y = document.getElementById("")
+        var x = document.getElementById("hidden");
+        if(x.style.display === "none"){
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        self.style.display = "none";
     }
 </script>
 
