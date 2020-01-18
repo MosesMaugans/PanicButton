@@ -31,21 +31,21 @@ User ID:<br> <br>
 </div>
 <br>  
 <br> <br>
-<button onclick = "activate(self)"> Call for Help </button>
+<button onclick = "activate()" id="help"> Call for Help </button>
 <p></p>
 <input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> Notify Police </input>
 </div>
 
 <script>
-    function activate(self){
-        var y = document.getElementById("")
+    function activate(){
+        var y = document.getElementById("help");
         var x = document.getElementById("hidden");
-        if(x.style.display === "none"){
+        if(x.style.display == "none"){
             x.style.display = "block";
+            y.style.display = "none";
         } else {
             x.style.display = "none";
         }
-        self.style.display = "none";
     }
 </script>
 
@@ -61,4 +61,3 @@ User ID:<br> <br>
 </script>
 </body> 
 </html>
-
