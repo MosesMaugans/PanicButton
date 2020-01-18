@@ -1,72 +1,149 @@
 <!DOCTYPE html>
 <html>
-<body>
+    <style>
+        body {
+          background-color:#404040;
+          text-align: center;
+          color: white;
+          font-family: Arial;
+        }
+        button {
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+  </style>
 
-<h2>Sign Up Page</h2>
+	<body>
 
-<p>
-	Username:<br>
-	<input type="text" id="id" value=""><br>
-</p>
+		<h2>Sign Up Page</h2>
 
-<p>
-	Password:<br>
-	<input type="password" id="p1" value=""><br>
-</p>
+		<p id = "userID"> Username:<br>
+			<input type="text" id="id" value="">
 
-<p>
-	Retype Password:<br>
-	<input type="password" id="p2" value=""><br>
-</p>
+		</p>
+		<p>
+			Password:<br>
+			<input type="password" id="p1" value=""><br>
+		</p>
 
-<p>
-	Contact Name:<br>
-	<input type="text" id="name" value=""><br>
-</p>
+		<p>
+			Confirm Password:<br>
+			<input type="password" id="p2" value=""><br>
+		</p>
 
-<p> 
-	Contact Phone:<br>
- 	<input type="text" id="phone" value=""><br>
-</p>
+		<p>
+        	Add your contact's full name, phone number <br>
+            or mobile number, and email address
+        </p>
+    
+		<p>
+			Contact Name:<br>
+			<input type="text" id="name" value=""><br>
+		</p>
 
-<p> Email Address:<br>
-    <input type="text" id="email" value=""><br>
-</p>
+		<p> 
+			Contact Phone:<br>
+ 			<input type="text" id="phone" value="xxx-xxx-xxxx"><br>
+		</p>
 
-<button onclick="myFunction(); samePass()">Click me</button>
+		<p> 
+        	Email Address:<br>
+   			<input type="text" id="email" value=""><br>
+		</p>
 
-<p id="demo"></p>
+		<button onclick="myFunction(); samePass()">Sign Up</button>
 
-<script>
-function myFunction() {
-  var x = document.getElementById("name").value + "<br>" +  document.getElementById("phone").value + "<br>" +  document.getElementById("email").value;
+		<p id="demo"></p>
+
+	<script>
+	function myFunction() {
+  		var x = document.getElementById("name").value + "<br>" +  			document.getElementById("phone").value + "<br>" +  		         document.getElementById("email").value;
 
  document.getElementById("demo").innerHTML = x;
 }
 
 
-function samePass(){
-	var p1 = document.getElementById("p1").value;
-    var p2 = document.getElementById("p2").value;
-    if (p1 == p2 ){
-    	storeInfo();
-    	redirect();
-        document.getElementById("demo").innerHTML = "MAtching";
-    }else{
-    	document.getElementById("demo").innerHTML = "Password Don't match!";
-    }
+	function samePass(){
+		var p1 = document.getElementById("p1").value;
+   	 	var p2 = document.getElementById("p2").value;
+   	 	var uName = document.getElementById("id").value;
+  		var cName = document.getElementById("name").value;
+  		var cPhone = document.getElementById("phone").value;
+    	var eAddress = document.getElementById("email").value;
+    	if (isValid(uName,p1,p2,cName, cPhone, eAddress)){
+    		storeInfo();
+    		redirect();
+  		}else{
+    		document.getElementById("demo").innerHTML = "Missing some information or incorrect inputs";
+    	}
 }
 
-function storeInfo(){
-	var userName = document.getElementById("id").value;
-    var passWord = document.getElementById("p1").value;
-    var contactName = document.getElementById("name").value;
-    var contactPhone = document.getElementById("phone").value;
-    var emailAddress = document.getElementById("email").value;
+	function storeInfo(){
+		var userName = document.getElementById("id").value;
+   		var passWord = document.getElementById("p1").value;
+    	var contactName = document.getElementById("name").value;
+    	var contactPhone = document.getElementById("phone").value;
+   	 	var emailAddress = document.getElementById("email").value;
 }
 
-function redirect(){
-	location.replace("index.html");
+	function redirect(){
+		location.replace("index.html");
+}
+
+	function isValid(uName,p1,p2,cName, cPhone, eAddress){
+    	var valid = true;
+   		if(uName.length < 1){
+        	// Username Incorrect
+            var userID = document.getElementById("id");
+            userID.style.color = "red";
+            valid = false;
+    	}
+    
+		if(p1 != p2 || p1.length < 1 || p2.length < 1){
+        	// Incorrect Password
+            var p1Id = document.getElementById("p1");
+            var p2Id = document.getElementById("p2");
+            p1Id.style.color = "red";
+            p2Id.style.color = "red";
+            valid = false;
+    	}
+        
+  		if(cName.length < 1){
+            var cNameID = document.getElementById("name");
+            cNameID.style.color = "red";
+            valid = false;
+    	}
+    
+    	if(phoneInvalid(cPhone)){
+			var cPhoneID = document.getElementById("phone");
+            cPhoneID.style.color = "red";
+            valid = false;
+    	}
+    
+    	if(emailInvalid(eAddress)){
+        	var emailID = document.getElementById("email");
+            emailID.style.color = "red";
+            valid = false;
+    	}
+    	return valid;
+}
+   
+	function phoneInvalid(cPhone){
+		if(cPhone.length != 12){
+    		return true;
+    	}
+    
+   		var dash1 = cPhone.charAt(3);
+   		var dash2 = cPhone.charAt(7);
+        return !(dash1 == '-' && dash2 == '-');
+}	
+
+	function emailInvalid(eAddress){
+		return !(eAddress.includes("@"));
 }
 
 </script>
