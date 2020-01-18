@@ -40,13 +40,17 @@ User ID:<br> <br>
 
 <script>
     function activate(){
-        var y = document.getElementById("help");
-        var x = document.getElementById("hidden");
-        if(x.style.display == "none"){
-            x.style.display = "block";
-            y.style.display = "none";
+        var callForHelp = document.getElementById("help");
+        var stopCall = document.getElementById("safe");
+        if(stopCall.style.display == "none"){
+            document.body.style.backgroundColor = "#cc3300";
+            stopCall.style.display = "block";
+            callForHelp.style.display = "none";
         } else {
-            x.style.display = "none";
+            document.body.style.backgroundColor = "#404040";
+            stopCall.style.display = "none";
+            callForHelp.style.display = "block";
+            
         }
     }
 </script>
