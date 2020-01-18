@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+          background-color:#404040;
+          color: white;
+          font-family: Arial;
+        }
+  button {
+    background-color: #4CAF50;
+  	border: none;
+ 	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+	font-size: 16px;
+  }
+  input[type=text], input[type=password] {
+  	width: 50%;
+ 	padding: 10px;
+ 	margin: 5px 0 0px 0;
+ 	display: inline-block;
+  	border: none;
+	background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+  }
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+.container {
+  padding: 16px;
+}
+  </style>
+
+	<body>
+      <form action="action_page.php">
+     <div class="container">
+		<h2>Sign Up Page</h2>
+		<p> Fill in the necessary information to process your account
+        <hr>
+		<p id = "userID"> Username:<br><input type="text" id="id" placeholder= "Enter Username" required></p>
+        
+		<p id = "p1ID">Password:<br>
+			<input type="password" id="p1" placeholder= "Enter Password" onkeyup = "checkValidPass()" required>
+            <li id = "cond1ID"><font size = "1">Password must be 5 characters long</font></li>
+        	<li id = "cond2ID"><font size = "1">Only letters and numbers</font></li>
+        </p>
+
+		<p id = "p2ID">Confirm Password:<br><input type="password" id="p2" placeholder="Re-enter Password" required><br></p>
+
+		<p>Add your contact's full name, phone number <br>or mobile number, and email address</p>
+    
+		<p id = "nameID">Contact Name:<br><input type="text" id="name" placeholder="ex. Ramon" required><br></p>
+
+		<p id= "phoneID">Contact Phone:<br><input type="text" id="phone" placeholder="xxx-xxx-xxxx" required><br></p>
+
+		<p id = "emailID">Email Address:<br><input type="text" id="email" placeholder="" required> <br></p>
+        <button onclick="myFunction(); samePass()">Sign Up</button>
+        <p id="demo"></p>
+        </div>
+        </form>
+
+	<script>
+	function myFunction() {
+  		var x = document.getElementById("name").value + "<br>" +  			document.getElementById("phone").value + "<br>" +  		         document.getElementById("email").value;
+
+ document.getElementById("demo").innerHTML = x;
+}
+
+
+	function samePass(){
+		var p1 = document.getElementById("p1").value;
+   	 	var p2 = document.getElementById("p2").value;
+   	 	var uName = document.getElementById("id").value;
+  		var cName = document.getElementById("name").value;
+  		var cPhone = document.getElementById("phone").value;
+    	var eAddress = document.getElementById("email").value;
+    	if (isValid(uName,p1,p2,cName, cPhone, eAddress)){
+    		storeInfo();
+  		}else{
+    		document.getElementById("demo").innerHTML = "Missing some information or incorrect inputs";
+    	}
+}
+
+	function storeInfo(){
+		var userName = document.getElementById("id").value;
+   		var passWord = document.getElementById("p1").value;
+    	var contactName = document.getElementById("name").value;
+    	var contactPhone = document.getElementById("phone").value;
+   	 	var emailAddress = document.getElementById("email").value;
+        var dataToSend = {"userid": userName,"password":passWord,"contact name":contactName,"contact phone":contactPhone,
+        "contact email":emailAddress};
+        var JsonData = JSON.stringify( dataToSend );
+        var postClient = new XMLHttpRequest();
+        postClient.open("POST",'http://34.67.247.205/register',true);
+
+        postClient.onload = function () {
+            redirect();
+        };
+        postClient.setRequestHeader('Content-type', 'application/json');
+        postClient.send(JsonData);
+}
+
+	function redirect(){
+		location.replace("index.html");
+}
+
+	function isValid(uName,p1,p2,cName, cPhone, eAddress){
+    	var valid = true;
+        var cond1 = document.getElementById("cond1");
+        var userID = document.getElementById("userID");
+        var p1Id = document.getElementById("p1ID");
+        var p2Id = document.getElementById("p2ID");
+        var cNameID = document.getElementById("nameID");
+        var cPhoneID = document.getElementById("phoneID");
+        var emailID = document.getElementById("emailID");
+   		if(uName.length < 1){
+        	// Username Incorrect
+            userID.style.color = "red";
+            valid = false;
+    	}else{
+        	userID.style.color = "white";
+        }
+    
+		if(p1 != p2 || p1.length < 1 || p2.length < 1){
+        	// Incorrect Password
+            p1Id.style.color = "red";
+            p2Id.style.color = "red";
+            valid = false;
+    	}else{
+        	p1Id.style.color = "white";
+            p2Id.style.color = "white";
+        }
+        
+  		if(cName.length < 1){
+            cNameID.style.color = "red";
+            valid = false;
+    	}else{
+        	cNameID.style.color = "white";
+        }
+    
+    	if(phoneInvalid(cPhone)){
+            cPhoneID.style.color = "red";
+            valid = false;
+    	}else{
+        	cPhoneID.style.color = "white";
+        }
+    
+    	if(emailInvalid(eAddress)){
+            emailID.style.color = "red";
+            valid = false;
+    	}else{
+        	emailID.style.color = "white";
+        }
+    	return valid;
+}
+   
+	function phoneInvalid(cPhone){
+		if(cPhone.length != 12){
+    		return true;
+    	}
+    
+    	var index = 0;
+        for(index = 0; index < 12; index++){
+        	var ascii = cPhone.charCodeAt(index);
+            if(index != 3 && index != 7){
+            	//document.getElementById("demo").innerHTML = "true";
+            	if(ascii < 48 || ascii> 58){
+                	document.getElementById("demo").innerHTML = "true";
+                	return true;
+                }
+            }
+        }
+        return false;
+}	
+
+	function emailInvalid(eAddress){
+		return !(eAddress.includes("@"));
+}
+
+	function checkValidPass(){
+    	var password = document.getElementById("p1").value;
+        var cond1ID = document.getElementById("cond1ID");
+        var cond2ID = document.getElementById("cond2ID");
+        var index = 0;
+        var cond = false;
+        document.getElementById("demo").innerHTML = "true";
+        if(password.length < 5){
+        	cond1ID.style.color = "red";
+        }else{
+        	cond1ID.style.color = "white";
+        }
+        
+        for(index = 0; index < password.length; index++){
+        	var ascii = password.charCodeAt(index);
+            if(!(ascii > 96 && ascii < 123) && !(ascii > 47 && ascii < 58) && !(ascii > 64 && ascii < 91)){
+            	cond2ID.style.color = "red";
+                break;
+            }else{
+            	cond2ID.style.color = "white";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
