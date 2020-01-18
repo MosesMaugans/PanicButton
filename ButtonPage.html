@@ -13,7 +13,6 @@
         button {
             background-color:#959595;
             border: none;
-            color: white;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -22,6 +21,50 @@
             cursor: pointer;
             box-shadow: 0 9px #747474;
             border-radius: 15px;
+            animation-name: fadeIn;
+        }
+        
+        h1{
+            opacity: 1;
+            transform: scaleY(1);
+            transForm: scaleX(1);
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+
+        div2{
+            animation-duration: 1s;
+            animation-name: fadeIn;
+        }
+
+        div3{
+            animation-duration: 1s;
+            animation-name: fadeIn;
+        }
+
+        div4{
+            opacity: 1;
+            transform: scaleY(1);
+            transForm: scaleX(1);
+            animation-name: dropDown;
+            animation-duration: 1s;
+        }
+
+        @keyframes dropDown{
+            from{transform: translateY(0px);}
+            to{transform: translateY(20px);}
+        }
+
+        input{
+            opacity: 1;
+            transform: scaleY(1);
+            animation-name: fadeIn;
+            animation-duration: .5s;
+        }
+
+        @keyframes fadeIn{
+            from{opacity: 0; transform: scaleY(0); transform: scaleX(0); transform: translateY(-20px)}
+            to{opacity: 1; transform: scaleY(1); transform: scaleX(1); transform:translateY(0px)}
         }
 
         button:hover{background-color: #535353;}
@@ -30,14 +73,6 @@
             background-color: #535353;
             box-shadow: 0 9px #323232;
             transform: translateY(4px);
-        }
-
-        @keyframes toCalling{
-            to{background-color: red;}
-        }
-
-        @keyframes fromCalling{
-            100% {background-color: #404040;}
         }
 
         @keyframes calling{
@@ -50,22 +85,22 @@
 
 <body>
 <h1>PANIC! button.</h1>
-User ID:<br> <br>
+	<div4>User ID:</div4><br> <br>
 <input type="text" id="userID" value="">
-<div id="hidden" style="display: none;">
+<div1 id="hidden" style="display: none;">
     <br>
     Password<br>
-    <input type="text" id="password"> <br> <br>
-    <button onclick = "activate()"> I'm safe</button>
-</div>
+    <input in1 type="text" id="password"></input> <br> <br>
+    <div2><button onclick = "activate()"> I'm safe</button></div2>
+</div1>
 <br>  
 <br> <br>
 <div id = "help" onclick="activate()">
     <button> Call for Help </button>
 </div>
 <p></p>
-<input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> Notify Police </input>
-</div> <br> <br> <br> <br> <br> <br> <br> <br>
+<div3><input checked type="checkbox" value="true" id="notify" onclick="toggleNotify()"> Notify Police </input></div3>
+</div4> <br> <br>
 
 <button onclick = "window.location.href = 'addNumbers.html'"> signup</button>
 <script>
@@ -77,12 +112,10 @@ User ID:<br> <br>
             stopCall.style.display = "block";
             callForHelp.style.display = "none";
         } else {
-            //document.body.style.animationIterationCount = 1;
-            document.body.style.animationName = "fromCalling";
             document.body.style.backgroundColor = "#404040";
+            document.body.style.animationName = "nothing";
             stopCall.style.display = "none";
             callForHelp.style.display = "block";
-            
         }
     }
 </script>
