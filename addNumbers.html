@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html>
     <style>
@@ -76,7 +77,6 @@
     	var eAddress = document.getElementById("email").value;
     	if (isValid(uName,p1,p2,cName, cPhone, eAddress)){
     		storeInfo();
-    		redirect();
   		}else{
     		document.getElementById("demo").innerHTML = "Missing some information or incorrect inputs";
     	}
@@ -88,6 +88,17 @@
     	var contactName = document.getElementById("name").value;
     	var contactPhone = document.getElementById("phone").value;
    	 	var emailAddress = document.getElementById("email").value;
+        var dataToSend = {"userid": userName,"password":passWord,"contact name":contactName,"contact phone":contactPhone,
+        "contact email":emailAddress};
+        var JsonData = JSON.stringify( dataToSend );
+        var postClient = new XMLHttpRequest();
+        postClient.open("POST",'http://34.67.247.205/register',true);
+
+        postClient.onload = function () {
+            redirect();
+        };
+        postClient.setRequestHeader('Content-type', 'application/json');
+        postClient.send(JsonData);
 }
 
 	function redirect(){
