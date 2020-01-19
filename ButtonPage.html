@@ -60,16 +60,22 @@
         }
 
         input{
+	    background-color: lightgray; 
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 10px 15px;
             opacity: 1;
             transform: scaleY(1);
             animation-name: fadeIn;
-            animation-duration: .5s;
+            animation-duration: 1s;
         }
 
         @keyframes fadeIn{
             from{opacity: 0; transform: scaleY(0); transform: scaleX(0); transform: translateY(-20px)}
             to{opacity: 1; transform: scaleY(1); transform: scaleX(1); transform:translateY(0px)}
         }
+	    
+	input:hover{background-color: white;}
 
         button:hover{background-color: #535353;}
 
@@ -93,7 +99,7 @@
 <input type="text" id="userID" value="">
 <div1 id="hidden" style="display: none;">
     <br>
-    Password<br>
+    Password:<br>
     <input in1 type="text" id="password"></input> <br> <br>
     <div2><button onclick = "activate()"> I'm safe</button></div2>
 </div1>
