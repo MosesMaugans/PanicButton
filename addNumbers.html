@@ -9,50 +9,96 @@
           font-family: Arial;
         }
         button {
-  border: none;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        input{
+            background-color: lightgray; 
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 10px 15px;
+            opacity: 1;
+            transform: scaleY(1);
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+        button {
+            background-color:#959595;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 9px #747474;
+            border-radius: 15px;
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+        h2{
+            opacity: 1;
+            transform: scaleY(1);
+            transForm: scaleX(1);
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+        div{
+            opacity: 1;
+            animation-name: textFade;
+            animation-duration: 3s;
+        }
+        @keyframes textFade{
+            from{opacity:0;}
+            to{opacity:1;}
+        }
+        input:hover{background-color: white;}
+        button:hover{background-color: #535353;}
+        button:active{
+            background-color: #535353;
+            box-shadow: 0 9px #323232;
+            transform: translateY(4px);
+        }
+        @keyframes fadeIn{
+            from{opacity: 0; transform: scaleY(0); transform: scaleX(0); transform: translateY(-20px)}
+            to{opacity: 1; transform: scaleY(1); transform: scaleX(1); transform:translateY(0px)}
+        }
   </style>
 
 	<body>
 
 		<h2>Sign Up Page</h2>
 
-		<p id = "userID"> Username:<br>
+		<p id = "userID"> <div>Username:</div><br>
 			<input type="text" id="id" value="">
-
 		</p>
 		<p>
-			Password:<br>
+			<div>Password:</div><br>
 			<input type="password" id="p1" value=""><br>
 		</p>
-
 		<p>
-			Confirm Password:<br>
+			<div>Confirm Password:</div><br>
 			<input type="password" id="p2" value=""><br>
 		</p>
-
 		<p>
-        	Add your contact's full name, phone number <br>
-            or mobile number, and email address
+        	<div>Add your contact's full name, phone number <br>
+            or mobile number, and email address</div>
         </p>
     
 		<p>
-			Contact Name:<br>
+			<div>Contact Name:</div><br>
 			<input type="text" id="name" value=""><br>
 		</p>
-
 		<p> 
-			Contact Phone:<br>
+			<div>Contact Phone:</div><br>
  			<input type="text" id="phone" value="xxx-xxx-xxxx"><br>
 		</p>
-
 		<p> 
-        	Email Address:<br>
+        	<div>Email Address:</div><br>
    			<input type="text" id="email" value=""><br>
 		</p>
 
